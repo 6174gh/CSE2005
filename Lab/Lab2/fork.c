@@ -3,8 +3,8 @@
 #include<unistd.h>
 #include<stdlib.h>
 int main(){
-    printf("Hi");
-    fork();
-    print("Hello");
+    int num;
+    fork();  
+    scanf("%d",&num);
     return 0;
 }
