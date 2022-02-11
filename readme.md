@@ -13,11 +13,13 @@ Lab num | File name| Descripion
 - | fcfs_burst.c | FCFS given only burst time
 - | sjf.c | SJF Non-Premptive
 - | srtf.cpp | SJF Premptive - SRTF
-4 | |
-5 | |
-6 | |
-7 | |
-priority_p.c priority premptive non round_robin.c 
+4 | priority_p.cpp | Priority Preemptive 
+- | priority_np.cpp | Priority Non Preemptive 
+- | rr.cpp | Round Robin Preemptive 
+5 | rr.cpp | Round Robin Preemptive - long time quantum
+- | bankers.cpp | Bankers Algorithm
+6 | - | -
+
 ## Index - Text
 
 > Refer to `Operating System Concepts 9th Ed` by Abraham Silberschatz for explanantion and related material.
@@ -32,3 +34,4 @@ SL | File name | Descripion
 5 | |
 6 | |
 7 | |
+
