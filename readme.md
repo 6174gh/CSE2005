@@ -19,6 +19,13 @@ Lab num | File name| Descripion
 5 | rr.cpp | Round Robin Preemptive - long time quantum
 5 | bankers.cpp | Bankers Algorithm
 6 | - | -
+7 | peterson.cpp | Petersons Problem
+7 | producerconsumer.cpp | Producer Consumer Problem
+8 | - | -
+9 | reader.cpp | Reader Writer Problem
+9| diner.cpp | Diner Philosopher Problem
+10 | memalloc.c | Contiguous Memmory allocation - First Fit - Fixed Size
+
 
 ## Index - Text
 
