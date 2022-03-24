@@ -59,7 +59,6 @@ void bestFit(struct memory *m, int m_no)
         {
             smallest[i] = 0;
         }
-        
 
         // Find and store compatible values
         for (int i = 0; i < m_no; i++)
@@ -70,7 +69,6 @@ void bestFit(struct memory *m, int m_no)
                 smallest[i] = active_size;
             }
         }
-        
 
         // find index of first usable value
         int sm;
@@ -146,7 +144,6 @@ void worstFit(struct memory *m, int m_no)
         {
             largest[i] = 0;
         }
-        
 
         // Find and store compatible values
         for (int i = 0; i < m_no; i++)
@@ -157,7 +154,6 @@ void worstFit(struct memory *m, int m_no)
                 largest[i] = active_size;
             }
         }
-        
 
         // find index of first usable value
         int lr;
@@ -227,7 +223,7 @@ int main()
     m[1].size = 100;
     m[2].size = 90;
     m[3].size = 200;
-    m[4].size = 50;
+    m[4].size = 60;
     m[0].alloc = m[1].alloc = m[2].alloc = m[3].alloc = m[4].alloc = 0; // To show its free
 
     // Menu

@@ -10,7 +10,7 @@ void firstFit(struct memory *m, int m_no)
     int i, size = 0, count = 1;
     printf("Enter the size of process %d: ", count);
     scanf("%d", &size);
-    int waste=0;
+    int waste = 0;
     do
     {
         int flag = 0;
@@ -19,7 +19,7 @@ void firstFit(struct memory *m, int m_no)
             if ((m[i].size - m[i].alloc) >= size)
             {
                 m[i].alloc = 1;
-                waste += m[i].size -size;
+                waste += m[i].size - size;
                 flag = 1;
                 break;
             }
@@ -35,7 +35,7 @@ void firstFit(struct memory *m, int m_no)
         count++;
         // display memory status after each execution
         printf("Current memmory status\n");
-        printf("Size\tAllocated\t");
+        printf("Size\tAllocated\n");
         for (int k = 0; k < m_no; k++)
         {
 
@@ -44,7 +44,7 @@ void firstFit(struct memory *m, int m_no)
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
     } while (size > 0);
-    printf("Total internal fragmentation:%d",waste);
+    printf("Total internal fragmentation:%d", waste);
 }
 void bestFit(struct memory *m, int m_no)
 {
@@ -52,67 +52,37 @@ void bestFit(struct memory *m, int m_no)
     int i, size = 0, count = 1;
     printf("Enter the size of process %d: ", count);
     scanf("%d", &size);
-    int waste=0;
+    int waste = 0;
     do
     {
-        int flag = 1, smallest_index = 0;
-        // initialise array to store compatible values
-        int smallest[m_no];
+        int sm = -1, flag = 0;
+        // find smallest memory location
         for (int i = 0; i < m_no; i++)
         {
-            smallest[i] = 0;
-        }
-        
-
-        // Find and store compatible values
-        for (int i = 0; i < m_no; i++)
-        {
-            int active_size = m[i].size - m[i].alloc;
-            if (active_size >= size)
-            {
-                smallest[i] = active_size;
-            }
-        }
-        
-
-        // find index of first usable value
-        int sm;
-        for (int k = 0; k < m_no; k++)
-        {
-            if (smallest[k] == 0)
+            if (m[i].alloc == 1)
                 continue;
-            else
+            else if (m[i].size >= size)
             {
-                sm = k;
+                sm = i;
+                flag = 1;
                 break;
             }
         }
-
-        // find index of smallest value
-        // index similar for all arrays
+        printf("sm-%d\n", sm);
         for (int j = 0; j < m_no; j++)
         {
-            if (smallest[j] == 0)
-                continue;
-            if (smallest[j] < sm)
+            if (m[j].alloc == 0 && (m[j].size <= m[sm].size) && m[j].size >= size)
             {
                 sm = j;
             }
         }
-
-        // printf("sm=%d",sm);
-
-        // set flag to 0 if no element is found
-        if (smallest[sm] == 0)
-        {
-            flag == 0;
-        }
-
+        printf("sm-%d\n", sm);
         // allocate memmory
         if (flag)
         {
-            m[sm].alloc += size;
-            printf("Memmory allocated - %d and size-%d\n", m[sm].alloc, size);
+            printf("sm-%d\n", sm);
+            m[sm].alloc = 1;
+            waste += m[sm].size - size;
             printf("Process is allocated\n");
         }
         else
@@ -121,18 +91,17 @@ void bestFit(struct memory *m, int m_no)
         }
         // display memory status after each execution
         printf("Current memmory status\n");
-        printf("Size\tAllocated\tFree\n");
+        printf("Size\tAllocated\n");
         for (int k = 0; k < m_no; k++)
         {
-
-            printf("%d\t%d\t\t%d\n", m[k].size, m[k].alloc, m[k].size - m[k].alloc);
+            printf("%d\t%d\n", m[k].size, m[k].alloc);
         }
 
         count++;
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
     } while (size > 0);
-    printf("Total internal fragmentation:%d",waste);
+    printf("Total internal fragmentation:%d\n", waste);
 }
 
 void worstFit(struct memory *m, int m_no)
@@ -141,67 +110,37 @@ void worstFit(struct memory *m, int m_no)
     int i, size = 0, count = 1;
     printf("Enter the size of process %d: ", count);
     scanf("%d", &size);
-    int waste=0;
+    int waste = 0;
     do
     {
-        int flag = 1, largest_index = 0;
-        // initialise array to store compatible values
-        int largest[m_no];
+        int lr = -1, flag = 0;
+        // find largest memory location
         for (int i = 0; i < m_no; i++)
         {
-            largest[i] = 0;
-        }
-        
-
-        // Find and store compatible values
-        for (int i = 0; i < m_no; i++)
-        {
-            int active_size = m[i].size - m[i].alloc;
-            if (active_size >= size)
-            {
-                largest[i] = active_size;
-            }
-        }
-        
-
-        // find index of first usable value
-        int lr;
-        for (int k = 0; k < m_no; k++)
-        {
-            if (largest[k] == 0)
+            if (m[i].alloc == 1)
                 continue;
-            else
+            else if (m[i].size >= size)
             {
-                lr = k;
+                lr = i;
+                flag = 1;
                 break;
             }
         }
-
-        // find index of largest value
-        // index similar for all arrays
+        printf("lr-%d\n", lr);
         for (int j = 0; j < m_no; j++)
         {
-            if (largest[j] == 0)
-                continue;
-            if (largest[j] > lr)
+            if (m[j].alloc == 0 && (m[j].size >= m[lr].size) && m[j].size >= size)
             {
                 lr = j;
             }
         }
-
-        // printf("lr=%d",lr);
-
-        // set flag to 0 if no element is found
-        if (largest[lr] == 0)
-        {
-            flag == 0;
-        }
-
+        printf("lr-%d\n", lr);
         // allocate memmory
         if (flag)
         {
-            m[lr].alloc += size;
-            printf("Memmory allocated - %d and size-%d\n", m[lr].alloc, size);
+            printf("lr-%d\n", lr);
+            m[lr].alloc = 1;
+            waste += m[lr].size - size;
             printf("Process is allocated\n");
         }
         else
@@ -210,18 +149,17 @@ void worstFit(struct memory *m, int m_no)
         }
         // display memory status after each execution
         printf("Current memmory status\n");
-        printf("Size\tAllocated\tFree\n");
+        printf("Size\tAllocated\n");
         for (int k = 0; k < m_no; k++)
         {
-
-            printf("%d\t%d\t\t%d\n", m[k].size, m[k].alloc, m[k].size - m[k].alloc);
+            printf("%d\t%d\n", m[k].size, m[k].alloc);
         }
 
         count++;
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
     } while (size > 0);
-    printf("Total internal fragmentation:%d",waste);
+    printf("Total internal fragmentation:%d\n", waste);
 }
 
 int main()
@@ -233,7 +171,7 @@ int main()
     m[1].size = 100;
     m[2].size = 90;
     m[3].size = 200;
-    m[4].size = 50;
+    m[4].size = 60;
     m[0].alloc = m[1].alloc = m[2].alloc = m[3].alloc = m[4].alloc = 0; // To show its free
 
     // Menu
