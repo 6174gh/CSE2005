@@ -16,15 +16,15 @@ void firstFit(struct memory *m, int m_no)
     int count = 1;
     int size = 1;
     int waste = 0;
-    for(int j=0;j<10;j++)
+    int i, j;
+    for (j = 0; j < m_no; j++)
     {
         int flagi = 0;
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
         int flag = 0;
-        for (int i = 0; i < m_no; i++)
+        for (i = 0; i < m_no; i++)
         {
-            printf("%d: size:%d \n",i,m[i].size);
             if (m[i].alloc == 0)
             {
                 flag = 1;
@@ -42,11 +42,11 @@ void firstFit(struct memory *m, int m_no)
         {
             printf("Process is not alloacted\n");
         }
-        // if (flag == 0)
-        // {
-        //     printf("All memmory blocks occupied\n");
-        //     break;
-        // }
+        if (flag == 0)
+        {
+            printf("All memmory blocks occupied\n");
+            break;
+        }
         count++;
     }
     printf("Internal fragmentation waste: %d\n", waste);
@@ -59,23 +59,26 @@ void bestFit(struct memory *m, int m_no)
     int count = 1;
     int size = 1;
     int waste = 0;
-    do
+    int i,j;
+    for (j = 0; j < m_no; j++)
     {
 
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
         int flag = 0;
-        int small = -1;
+        int small = m[0].size;
+        int small_i = 0;
         int flagi = 0;
-        for (int i = 1; i < m_no; i++)
+        for (i = 1; i < m_no; i++)
         {
             if (m[i].size < small && m[i].size >= size)
             {
-                small = i;
+                small = m[i].size;
+                small_i = i;
                 flagi = 1;
             }
         }
-        for (int i = 0; i < m_no; i++)
+        for (i = 0; i < m_no; i++)
         {
             if (m[i].alloc == 0)
             {
@@ -95,20 +98,19 @@ void bestFit(struct memory *m, int m_no)
             if (flagi == 0)
             {
                 printf("Process is not alloacted\n");
-                break;
             }
             else
             {
-                if (small > -1)
+                if (small_i > -1)
                 {
                     m[small].alloc = 1;
                     waste += m[small].size - size;
-                    printf("Process is not alloacted\n");
+                    printf("Process is alloacted\n");
                 }
             }
         }
         count++;
-    } while (size > 0);
+    }
     printf("Internal fragmentation waste: %d\n", waste);
 }
 
@@ -119,23 +121,27 @@ void worstFit(struct memory *m, int m_no)
     int count = 1;
     int size = 1;
     int waste = 0;
-    do
+        int i,j;
+    for (j = 0; j < m_no; j++)
     {
 
         printf("Enter the size of process %d: ", count);
         scanf("%d", &size);
         int flag = 0;
         int flagi = 0;
-        int large = -1;
-        for (int i = 1; i < m_no; i++)
+        int large = m[0].size;
+        int large_i = 0;
+        int i;
+        for (i = 1; i < m_no; i++)
         {
             if (m[i].size > large && m[i].size >= size)
             {
-                large = i;
+                large = m[i].size;
+                large_i = i;
                 flagi = 1;
             }
         }
-        for (int i = 0; i < m_no; i++)
+        for (i = 0; i < m_no; i++)
         {
             if (m[i].alloc == 0)
             {
@@ -154,7 +160,6 @@ void worstFit(struct memory *m, int m_no)
             if (flagi == 0)
             {
                 printf("Process is not alloacted\n");
-                break;
             }
             else
             {
@@ -162,7 +167,7 @@ void worstFit(struct memory *m, int m_no)
                 {
                     m[large].alloc = 1;
                     waste += m[large].size - size;
-                    printf("Process is not alloacted\n");
+                    printf("Process is alloacted\n");
                 }
             }
         }
@@ -180,7 +185,7 @@ int main()
     m[2].size = 90;
     m[3].size = 200;
     m[4].size = 50;
-    m[0].alloc = m[1].alloc = m[2].alloc = m[3].alloc = m[4].alloc = m[5].alloc = m[6].alloc = 0; //To show its free
+    m[0].alloc = m[1].alloc = m[2].alloc = m[3].alloc = m[4].alloc = 0; // To show its free
 
     // Menu
     printf("Fixed Size memmory allocation\n");
