@@ -68,7 +68,7 @@ void bestFit(struct memory *m, int m_no)
                 break;
             }
         }
-        printf("sm-%d\n", sm);
+        //printf("sm-%d\n", sm);
         for (int j = 0; j < m_no; j++)
         {
             if (m[j].alloc == 0 && (m[j].size <= m[sm].size) && m[j].size >= size)
@@ -76,7 +76,7 @@ void bestFit(struct memory *m, int m_no)
                 sm = j;
             }
         }
-        printf("sm-%d\n", sm);
+        //printf("sm-%d\n", sm);
         // allocate memmory
         if (flag)
         {
@@ -126,7 +126,7 @@ void worstFit(struct memory *m, int m_no)
                 break;
             }
         }
-        printf("lr-%d\n", lr);
+        //printf("lr-%d\n", lr);
         for (int j = 0; j < m_no; j++)
         {
             if (m[j].alloc == 0 && (m[j].size >= m[lr].size) && m[j].size >= size)
@@ -134,7 +134,7 @@ void worstFit(struct memory *m, int m_no)
                 lr = j;
             }
         }
-        printf("lr-%d\n", lr);
+        //printf("lr-%d\n", lr);
         // allocate memmory
         if (flag)
         {
