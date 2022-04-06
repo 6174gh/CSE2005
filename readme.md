@@ -22,11 +22,11 @@
 | 7       | producerconsumer.cpp | Producer Consumer Problem                              |
 | 8       | peterson.cpp         | Petersons Problem without semaphore (Not done)         |
 | 8       | producerconsumer.cpp | Producer Consumer Problem without semaphore (Not done) |
-| 9       | reader.cpp           | Reader Writer Problem                                  |
-| 9       | diner.cpp            | Diner Philosopher Problem                              |
+| 9       | reader.c             | Reader Writer Problem                                  |
+| 9       | diner.c              | Diner Philosopher Problem                              |
 | 10      | memalloc.c           | Contiguous Memmory allocation - Fixed Size             |
 | 10      | memallocvariable.c   | Contiguous Memmory allocation - Variable Size          |
-| 11      | page.c               | Page replacement algorithm                             |
+| 11      | page.cpp             | Page replacement algorithm                             |
 
 ## Index - Text
 
