@@ -26,7 +26,10 @@
 | 9       | diner.c              | Diner Philosopher Problem                              |
 | 10      | memalloc.c           | Contiguous Memmory allocation - Fixed Size             |
 | 10      | memallocvariable.c   | Contiguous Memmory allocation - Variable Size          |
-| 11      | page.cpp             | Page replacement algorithm                             |
+| 11      | page_fifo.cpp        | Page replacement algorithm - FIFO                      |
+| 12      | page_lru.cpp         | Page replacement algorithm - LRU                       |
+| 12      | page_optimal.cpp     | Page replacement algorithm - Optimal                   |
+| 12      | comparison.cpp       | Compare different page replacement algorithms          |
 
 ## Index - Text
 
