@@ -48,6 +48,67 @@ int lru(int *frame, int *arr, int frame_size, string seq)
 
     return miss;
 }
+int optimal(int *frame, int *arr, int frame_size, string seq)
+{
+    int current = 0, miss = 0;
+    for (int i = 0; i < seq.length(); i++)
+    {
+        int flag = 1;
+        for (int j = 0; j < frame_size; j++)
+        {
+            if (arr[i] == frame[j])
+            {
+                flag = 0;
+            }
+        }
+        if (flag)
+        {
+            // cout << "Page Fault" << endl;
+            miss++;
+            // Seach for element which is farthest
+            int index[frame_size];
+            for (int j = 0; j < frame_size; j++)
+                index[j] = -1;
+            for (int k = 0; k < frame_size; k++)
+            {
+                for (int j = i + 1; j < seq.length(); j++)
+                {
+                    if (frame[k] == arr[j])
+                    {
+                        index[k] = j;
+                        break;
+                    }
+                }
+            }
+            int index_farthest_referenced = index[0];
+            bool flag_furthest = false;
+            for (int j = 1; j < frame_size; j++)
+            {
+                if (index[j] == -1)
+                {
+                    // Replace using FIFO
+                    frame[current] = arr[i];
+                    current++;
+                    current %= frame_size;
+                    break;
+                }
+                else
+                {
+                    if (index_farthest_referenced > index[j])
+                        index_farthest_referenced = index[j];
+                    flag_furthest = true;
+                }
+            }
+            if (flag_furthest)
+            {
+                frame[index_farthest_referenced] = arr[i];
+                current++;
+                current %= frame_size;
+            }
+        }
+    }
+    return miss;
+}
 int fifo(int *frame, int *arr, int frame_size, string seq)
 {
 
@@ -81,7 +142,7 @@ int fifo(int *frame, int *arr, int frame_size, string seq)
 }
 int main()
 {
-    cout << "Page replacement algorithm FIFO\n";
+    cout << "Page replacement algorithm FIFO vs Optimal vs LRU\n";
     int frame_size, page_size;
     cout << "Enter the no of frames (frame size)\n";
     cin >> frame_size;
@@ -103,19 +164,47 @@ int main()
     }
     int fifo_miss = fifo(frame, arr, frame_size, seq);
     int lru_miss = lru(frame, arr, frame_size, seq);
+    int optimal_miss = optimal(frame, arr, frame_size, seq);
     cout << "No of Miss in FIFO: " << fifo_miss << endl;
+    cout << "No of Miss in Optimal: " << optimal_miss << endl;
     cout << "No of Miss in LRU: " << lru_miss << endl;
-    if (fifo_miss < lru_miss)
+    if (fifo_miss == optimal_miss == lru_miss)
+        cout << "All three methods are equally efficient" << endl;
+    else if (fifo_miss == optimal_miss)
     {
-        cout << "FIFO is efficient" << endl;
+        if (lru_miss < fifo_miss)
+            cout << "LRU is efficient" << endl;
+        else
+            cout << "FIFO and optimal are efficient" << endl;
     }
     else if (fifo_miss == lru_miss)
     {
-        cout << "Both are equally efficient" << endl;
+        if (optimal_miss < fifo_miss)
+            cout << "Optimal is efficient" << endl;
+        else
+            cout << "FIFO and LRU are efficient" << endl;
+    }
+    else if (lru_miss == optimal_miss)
+    {
+        if (fifo_miss < lru_miss)
+            cout << "FIFO is efficient" << endl;
+        else
+            cout << "LRU and optimal are efficient" << endl;
+    }
+    else if (fifo_miss < optimal_miss)
+    {
+        if (fifo_miss < lru_miss)
+            cout << "FIFO is efficient" << endl;
+        else
+            cout << "LRU is efficient" << endl;
     }
     else
     {
-        cout << "LRU is efficient" << endl;
+        if (optimal_miss < lru_miss)
+            cout << "Optimal is efficient" << endl;
+        else
+            cout << "LRU is efficient" << endl;
     }
+
     return 0;
 }
