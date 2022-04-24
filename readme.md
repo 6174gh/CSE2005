@@ -30,6 +30,11 @@
 | 12      | page_lru.cpp         | Page replacement algorithm - LRU                       |
 | 12      | page_optimal.cpp     | Page replacement algorithm - Optimal                   |
 | 12      | comparison.cpp       | Compare different page replacement algorithms          |
+|13|disk_fcfs.cpp| Disk Scheduling FCFS
+|13|disk_sstf.cpp| Disk Scheduling SSTF
+|14|disk_scan.cpp| Disk Scheduling Scan
+|14|disk_cscan.cpp| Disk Scheduling C-Scan
+
 
 ## Index - Text
 
