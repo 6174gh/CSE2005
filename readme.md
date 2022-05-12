@@ -1,6 +1,8 @@
-# Operating System
+# Operating Systems
 
-## Index - Lab
+# CSE2005
+
+## Index - Lab Assignments
 
 | Lab num | File name            | Descripion                                             |
 | ------- | -------------------- | ------------------------------------------------------ |
@@ -30,24 +32,15 @@
 | 12      | page_lru.cpp         | Page replacement algorithm - LRU                       |
 | 12      | page_optimal.cpp     | Page replacement algorithm - Optimal                   |
 | 12      | comparison.cpp       | Compare different page replacement algorithms          |
-|13|disk_fcfs.cpp| Disk Scheduling FCFS
-|13|disk_sstf.cpp| Disk Scheduling SSTF
-|14|disk_scan.cpp| Disk Scheduling Scan
-|14|disk_cscan.cpp| Disk Scheduling C-Scan
+| 13      | disk_fcfs.cpp        | Disk Scheduling FCFS                                   |
+| 13      | disk_sstf.cpp        | Disk Scheduling SSTF                                   |
+| 14      | disk_scan.cpp        | Disk Scheduling Scan                                   |
+| 14      | disk_cscan.cpp       | Disk Scheduling C-Scan                                 |
 
+## Shell Scripting
 
-## Index - Text
-
-> Refer to `Operating System Concepts 9th Ed` by Abraham Silberschatz for explanantion and related material.
-
-| SL  | Module | Chapter Name                |
-| --- | ------ | --------------------------- |
-| 1   | 1      | Introduction                |
-| 2   | 1      | System Structure            |
-| 3   | 2      | Process Concept             |
-| 4   | 2      | Multithreaded Programming   |
-| 5   | 3      | Process scheduling          |
-| 6   | 4      | Synchronization             |
-| 7   | 4      | Deadlocks                   |
-| 8   | 5      | Memory Management Stategies |
-| 9   | 5      | Virtual Memory Management   |
+| num | File name | Descripion |
+|1|count_users.sh|Cout number of users on system|
+|2|exon.sh|Turns execution bit on for the CLA passed|
+|1|learn.sh| Basic Shelll Scipting|
+|1|no_of_args.sh|Count number of argument passed|
