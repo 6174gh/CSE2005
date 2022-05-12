@@ -39,8 +39,9 @@
 
 ## Shell Scripting
 
-| num | File name | Descripion |
-|1|count_users.sh|Cout number of users on system|
-|2|exon.sh|Turns execution bit on for the CLA passed|
-|1|learn.sh| Basic Shelll Scipting|
-|1|no_of_args.sh|Count number of argument passed|
+| num | File name      | Descripion                                |
+| --- | -------------- | ----------------------------------------- |
+| 1   | count_users.sh | Cout number of users on system            |
+| 2   | exon.sh        | Turns execution bit on for the CLA passed |
+| 1   | learn.sh       | Basic Shelll Scipting                     |
+| 1   | no_of_args.sh  | Count number of argument passed           |
